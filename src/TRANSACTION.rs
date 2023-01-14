@@ -1,7 +1,7 @@
 pub mod t
 {
     use std::time::{SystemTime,UNIX_EPOCH,Duration};
-
+    //TRANSACTION DATA
     pub struct Transaction
     {
         pub amount:u32,
