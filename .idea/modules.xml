@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RustBlockchain.iml" filepath="$PROJECT_DIR$/RustBlockchain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RUSTBLOCKCHAIN.iml" filepath="$PROJECT_DIR$/RUSTBLOCKCHAIN.iml" />
     </modules>
   </component>
 </project>
