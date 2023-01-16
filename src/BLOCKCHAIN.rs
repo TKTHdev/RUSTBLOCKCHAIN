@@ -35,7 +35,7 @@ pub mod bc
         }
 
         /*NEEDS TO BE MODIFIED!!!!!!!!!!!!!!!!!!!!*/
-        pub fn get_lastest_block()->Block
+        pub fn get_latest_block()->Block
         {
             return Block;
         }
