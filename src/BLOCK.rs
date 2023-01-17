@@ -33,7 +33,7 @@ pub mod b
             }
         }
 
-        fn generate_hash(&trans:&Transaction,&prev_hash:&Sha256) -> Sha256
+        fn generate_hash(trans:&Transaction,prev_hash:&Sha256) -> Sha256
         {
             let timestamp = trans.timestamp.as_millis() as i32;
             let mut to_hash = trans.amount.to_string() + &trans.receiver_key + &trans.sender_key +&timestamp.to_string() as &str;
