@@ -21,7 +21,6 @@ pub mod b
     impl Block
     {
         /*CONSTRUCTOR*/
-        /*NEEDS TO BE MODIFIED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
         pub fn new(idx:i32,d:Transaction,prev_hash:Sha256)->Self
         {
             Self
@@ -59,28 +58,25 @@ pub mod b
         }
 
         /*GET ORIGINAL HASH*/
-        /*NEEDS TO BE MODIFIED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-        pub fn get_hash()->Sha256
+        pub fn get_hash(&self)->&Sha256
         {
-            return Sha256::new();
+            return &self.block_hash;
         }
 
         /*GET PREVIOUS HASH*/
-        /*NEEDS TO BE MODIFIED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-        pub fn get_previous_hash()->Sha256
+        pub fn get_previous_hash(&self)->&Sha256
         {
-            return Sha256::new();
+            return &self.previous_hash;
         }
 
         /*CHECK IS THE HASH IS VALID */
-        /*NEEDS TO BE MODIFIED!!!!!!!!!!!!!!!!!!*/
-        pub fn is_hash_valid()->bool
+        pub fn is_hash_valid(&self)->bool
         {
-            return false;
+            let f1:String=format!("{:X}",Self::generate_hash(&self.data,&self.previous_hash).finalize());
+            let f2:String=format!("{:X}",&self.block_hash.finalize());
+
+            return f1==f2;
         }
-
-
-
 
 
     }
