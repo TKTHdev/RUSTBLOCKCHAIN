@@ -23,12 +23,14 @@ pub mod b
         /*CONSTRUCTOR*/
         pub fn new(idx:i32,d:Transaction,prev_hash:Sha256)->Self
         {
+
+            let hash=Self::generate_hash(&d,&prev_hash);
             Self
             {
                 index:idx,
                 data:d,
                 previous_hash:prev_hash,
-                block_hash:Self::generate_hash(&d,&prev_hash),
+                block_hash:hash,
 
             }
         }
@@ -40,7 +42,7 @@ pub mod b
 
 
 
-            let f2:String=format!("{:X}",prev_hash.finalize());
+            let f2:String=format!("{:X}",prev_hash.clone().finalize());
 
             return Self::combine_sha256(to_hash, f2);
 
@@ -73,9 +75,19 @@ pub mod b
         pub fn is_hash_valid(&self)->bool
         {
             let f1:String=format!("{:X}",Self::generate_hash(&self.data,&self.previous_hash).finalize());
-            let f2:String=format!("{:X}",&self.block_hash.finalize());
+            let f2:String=format!("{:X}",&self.block_hash.clone().finalize());
 
             return f1==f2;
+        }
+
+        pub fn display_hash(&self) -> String
+        {
+            return format!("{:X}",&self.block_hash.clone().finalize());
+        }
+
+        pub fn display_information(&self) -> String
+        {
+            return self.data.sender_key.clone();
         }
 
 

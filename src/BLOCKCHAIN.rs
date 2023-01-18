@@ -31,29 +31,63 @@ pub mod bc
 
         /*CONSTRUCTOR*/
         /*NEEDS TO BE MODIFIED!!!!!!!!!!!*/
-        pub fn new(&mut self)
+        pub fn new()->Self
         {
             let genesis:Block=Self::create_genesis_block();
-            &self.chain.push(genesis);
+            Self
+            {
+                chain:vec![genesis]
+            }
         }
 
         /*NEEDS TO BE MODIFIED!!!!!!!!!!!!!!!!*/
-        pub fn add_block(data:Transaction)
+        pub fn add_block(&mut self,data:Transaction)
         {
+            let chain_length=(self.chain.len()-1) as i32;
+            let prev_block=&self.chain[chain_length as usize];
+            let hash=prev_block.get_hash();
+            let new_block=Block::new(chain_length,data,hash.clone());
+            &self.chain.push(new_block);
 
         }
 
         /*NEEDS TO BE MODIFIED!!!!!!!!*/
-        pub fn is_chain_valid()->bool
+        pub fn is_chain_valid(&self)->bool
         {
-            return false;
+            let chain_length = self.chain.len();
+
+            for i in 1..chain_length
+            {
+                if chain_length<2
+                {
+                    return true;
+                }
+
+                if !self.chain[i].is_hash_valid()
+                {
+                    return false;
+                }
+
+
+                if chain_length>=2
+                {
+                    let previous_hash= format!("{:X}", self.chain[i].get_previous_hash().clone().finalize());
+                    let now_hash= format!("{:X}", self.chain[i-1].get_hash().clone().finalize());
+                    if previous_hash!=now_hash
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         /*NEEDS TO BE MODIFIED!!!!!!!!!!!!!!!!!!!!*/
-        pub fn get_latest_block(&mut self)->Block
+        pub fn get_latest_block(&mut self)->&Block
         {
             let block=self.chain.last();
-            return b ;
+            return block.unwrap();
         }
 
 
