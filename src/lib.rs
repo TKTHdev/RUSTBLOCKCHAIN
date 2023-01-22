@@ -1,3 +1,3 @@
-pub mod BLOCKCHAIN;
-pub mod TRANSACTION;
-pub mod BLOCK;
+pub mod blockchain;
+pub mod transaction;
+pub mod block;
